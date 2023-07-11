@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
+    <meta name="description" content="Markdown转换工具">
+    <title>在线Markdown微信格式化工具</title>
+    <script src="./js/index.js"></script>
+    <link rel="stylesheet" href="./themes/github-v2.css" id="codeThemeId" />
+    <link rel="stylesheet" id="pageThemeId" />
+</head>
+
+<body>
+    <div class="topheader">
+        <a href="https://tool.xushufa.cn">
+            <h1>Markdown在线微信公众号文档格式化工具</h1>
+            <p>Markdown to wechat public account document tool</p>
+        </a>
+
+    </div>
+    <!--编辑-->
+    <textarea id="input" spellcheck="false">
+	
+## 在线Markdown微信格式化工具
+
+
+> 功能说明 
+
+- 在线编辑预览markdown文件
+
+- 一键复制排版至微信公众号
+
+- 地址 &ensp;[md]( https://tool.xushufa.cn ) &ensp; [github]( https://github.com/scott180/xushufa-tool )
+
+
+---
+
+
+
+> 参考项目
+
+[barretlee]( https://github.com/barretlee/online-markdown ) &ensp;  [knightyun]( https://github.com/knightyun/markdown-to-richtext )
+
+---
+
+
+
+> 我的网站
+
+
+| 徐书法 | 我的网站    |  备注          |
+| -----  | ----------- |  ------------- |
+| 1      | [xushufa]( https://xushufa.cn ) &ensp; [blog]( https://blog.xushufa.cn ) | 《书法练习轨迹》及博客网站。     |
+| 2      | [reco-calligraphy]( https://reco-calligraphy.xushufa.cn ) &ensp; [reco-blog]( https://reco-blog.xushufa.cn ) | `vuepress-theme-reco`构建的网站。     |
+
+---
+
+	</textarea>
+    <!--预览-->
+    <div id="output" class="themes-config">
+        <div class="theme-wrapper">
+            <label>页面主题选择：</label><select class="page-theme"></select><br><br>
+            <label>代码主题选择：</label><select class="code-theme"></select>
+        </div>
+        <div class="theme-wrapper">
+            <button class="btn copy-button" data-clipboard-action="copy" data-clipboard-target="#outputCtt">复制</button>
+        </div>
+        <div class="wrapper" id="outputCtt"></div>
+    </div>
+</body>
+
+</html>
