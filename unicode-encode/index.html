@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Unicode编码、Unicode解码</title>
+    <meta name="keywords" content="Unicode编码、Unicode解码">
+    <meta name="description" content="在线Unicode编码、Unicode解码">
+    <link rel="shortcut icon" href="../index/favicon.ico">
+    <link href="https://cdn.bootcss.com/font-awesome/5.10.0-11/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+
+<main>
+
+    <div class="container">
+	       <div>
+                <a href="https://tool.xushufa.cn" data-placement="bottom" target="_blank">工具网站</a> &ensp;  
+                <a href="https://github.com/magicyqy/QStack.Framework/tree/0d6698a744fc899888e2b3ae9dc82a5d3040bd92/QStack.Blog/wwwroot/tools/url" data-placement="bottom" target="_blank">参考项目</a>
+            </div>
+        <h1>Unicode编码、Unicode解码</h1>
+		
+		<h2 class="mt-2">UTF-8:</h2>
+        <textarea id="area_unicode" class="textarea mt-2" rows="6" cols="100" onpaste="setTimeout(encode, 1)">Unicode（统一码、万国码、单一码）是计算机科学领域里的一项业界标准
+		</textarea>
+        <div class="content-center mt-2">
+            <button class="button" onclick="encode()">
+                <i class="fa fa-arrow-down"></i>
+                <span>编码</span>
+            </button>
+            <button class="button" onclick="decode()">
+                <i class="fa fa-arrow-up"></i>
+                <span>解码</span>
+            </button>
+            <button class="button" onclick="cleanup()">清空</button>
+        </div>
+		
+        <h2 class="mt-2">Unicode:</h2>
+        <textarea id="area_utf8" class="textarea mt1" rows="6"  cols="100" onpaste="setTimeout(decode, 1)">Unicode%uFF08%u7EDF%u4E00%u7801%u3001%u4E07%u56FD%u7801%u3001%u5355%u4E00%u7801%uFF09%u662F%u8BA1%u7B97%u673A%u79D1%u5B66%u9886%u57DF%u91CC%u7684%u4E00%u9879%u4E1A%u754C%u6807%u51C6</textarea>
+		
+	  
+        <div class="tile mt-2">
+            <ul>
+                <li>Unicode（统一码、万国码、单一码）是计算机科学领域里的一项业界标准，包括字符集、编码方案等。Unicode 是为了解决传统的字符编码方案的局限而产生的，它为每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。
+                </li>
+                <li>UTF-8是一种变长的编码方法，字符长度从1个字节到4个字节不等。越是常用的字符，字节越短，最前面的128个字符，只使用1个字节表示，与ASCII码完全相同。
+                </li>
+				<li>再次强调一下，UTF-8与Unicode的关系是：UTF-8是Unicode的实现方式之一。
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<script>
+    let area_unicode = document.getElementById('area_unicode');
+    let area_utf8 = document.getElementById('area_utf8');
+
+    function encode() {
+        area_utf8.value = escape(area_unicode.value);
+    }
+
+    function decode() {
+        if (area_utf8.value) {
+		    let value1 = area_utf8.value.replaceAll("\\u", "%u");
+            area_unicode.value = unescape(value1)
+        } 
+    }
+
+    function cleanup() {
+        area_unicode.value = '';
+        area_utf8.value = '';
+    }
+</script>
+</body>
+</html>
