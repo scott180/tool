@@ -59,8 +59,8 @@
         <option value="second">秒</option>
     </select>
 	</div>
-    <button id="btn">&ensp;时间戳 >> 北京时间 ⬇ &ensp; </button> &ensp;
-    <button id="BJtoUnix">&ensp;北京时间 >> 时间戳 ⬆ &ensp;</button>
+    <button id="btn">&ensp;时间戳 >> 北京时间↓↓↓ &ensp; </button> &ensp;
+    <button id="BJtoUnix">&ensp;北京时间 >> 时间戳↑↑↑ &ensp;</button>
     <textarea id="out" cols="30" rows="6">2022-04-02 21:22:23</textarea>
 </div>
 <div id="inner">
@@ -121,6 +121,7 @@
         var date=now.getDate();
 		date = date<10 ? "0"+date : date;
         var hour=now.getHours();
+		hour=(hour>9?hour:'0'+hour);
         var minute=now.getMinutes();
         minute=(minute>9?minute:'0'+minute);
         var second=now.getSeconds();
