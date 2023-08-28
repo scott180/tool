@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Json转Excel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="Json转Excel">
+    <link rel="shortcut icon" href="../index/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.css">
+    <link rel="stylesheet" href="codemirror.css">
+    <link rel="stylesheet" href="demo.css">
+    <script src="./xlsx.full.min.js"></script>
+
+  </head>
+  <body>
+
+    <div class="header">
+      <h2>Json转Excel</h1>
+            <h4>
+                <a href="https://tool.xushufa.cn" data-placement="bottom" target="_blank">工具网站</a>&ensp;
+                <a href="https://github.com/CYD-10/Json2Excel" data-placement="bottom" target="_blank">参考项目</a>
+            </h4>
+    </div>
+	</br>
+	
+    <div class="content">
+      <div class="src">
+        <h4 class="subheader"> 
+		<a href="#" id="permalink"><input type="file" id="files"/></a> 
+		
+		示例</br>
+        <textarea id="urlVal" rows="27" cols="55">
+[{
+	"addrAddress": "无为徐生",
+	"addrHash": "dc1ab4c0cef91b8902e63d95f283d1",
+	"sort": 1.0000000000000000,
+	"addrName": "无为徐生",
+	"id": null,
+	"deliverySortId": 8890,
+	"warehouseId": 8,
+	"tag": 0
+}, {
+	"addrAddress": "徐书法",
+	"addrHash": "https://www.xushufa.cn",
+	"sort": 2.0000000000000000,
+	"addrName": "xu",
+	"id": null,
+	"deliverySortId": 8890,
+	"warehouseId": 8,
+	"tag": 0
+}]
+	</textarea>
+		</br>
+        </br>
+		</br>
+      </div>
+	  
+      <div class="dst">
+		
+        <h4 class="subheader">
+		<a class="QR-download" style="margin: 16px" ><button onclick="jsonToExcel()">导出为Excel</button></a>
+		
+		</div>
+      </div>
+    </div>
+	
+	
+<!--
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./xlsx.full.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<div>
+  <input type="file" id="files"/>
+  <button onclick="jsonToExcel()">导出为Excel</button>
+</div>
+-->
+
+<script>
+  var json;
+  var inputElement = document.getElementById("files");
+  inputElement.addEventListener("change", handleFiles, false);
+  function handleFiles() {
+	 var selectedFile = document.getElementById("files").files[0];
+	 var reader = new FileReader();
+	 reader.readAsText(selectedFile,"UTF-8");
+	 reader.onload = function(){
+	  try {
+		json = JSON.parse(this.result);
+	  } catch (error) {
+	  console.log(error);
+	  alert("json文件格式错误");
+	  } 
+	 };
+  }
+  
+  function jsonToExcel () {
+    var filename = "write.xlsx";
+    var ws_name = "SheetJS";
+    var wb = XLSX.utils.book_new();
+	try {
+		    var ws = XLSX.utils.json_to_sheet(json,{ raw: true });
+			XLSX.utils.book_append_sheet(wb, ws, ws_name);
+			XLSX.writeFile(wb, filename);
+	  } catch (error) {
+		console.log(error);
+	   alert("json文件格式不正确，请参考示例");
+	  } 
+  }
+</script>
+</body>
+</html>
