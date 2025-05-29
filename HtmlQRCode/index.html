@@ -20,7 +20,7 @@
 
     <main class="main">
         <aside class="create">
-            <input type="text" id="code" value="https://xushufa.cn" placeholder="请在这里输入要生成的内容！" />
+            <input type="text" id="code" value="https://scott180.github.io/vuepress-blog" placeholder="请在这里输入要生成的内容！" />
             <input type="button" value="生成" onclick="create()" />
             <div class="qrcode" id="qrcode"></div>
         </aside>
@@ -44,7 +44,7 @@
     <script>
         const text = document.querySelector('#code');
         const qrcode = new QRCode(document.querySelector('#qrcode'), {
-            text: "https://xushufa.cn",
+            text: "https://scott180.github.io/vuepress-blog",
             width: 300,
             height: 300,
             colorDark: "black",
