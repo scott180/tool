@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SQL字段转驼峰（保留原字段）</title>
+  <style>
+    body {
+      font-family: "Microsoft YaHei", sans-serif;
+      background-color: #f5f7fa;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #1890ff;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      resize: vertical;
+      margin-bottom: 15px;
+      font-family: Consolas, monospace;
+    }
+    .btn {
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .btn:hover {
+      background-color: #40a9ff;
+    }
+    .btn-copy {
+      background-color: #52c41a;
+    }
+    .btn-copy:hover {
+      background-color: #73d13d;
+    }
+    .result {
+      margin-top: 20px;
+      border: 1px solid #e8e8e8;
+      padding: 15px;
+      border-radius: 6px;
+      background-color: #fafafa;
+      min-height: 60px;
+      font-family: Consolas, monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .tips {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>SQL字段 → 原字段 + 驼峰命名</h1>
+  <p>请输入 SQL 字段名（每行一个，支持下划线格式）：</p>
+  <textarea id="inputField" placeholder="例如：create_time,order_no,num "></textarea>
+
+  <button class="btn" onclick="convertToCamelCase()">转换为：原字段 驼峰字段</button>
+  <button class="btn btn-copy" onclick="copyResult()">复制结果</button>
+
+  <h3>转换结果：</h3>
+  <div class="result" id="result"></div>
+
+  <div class="tips">
+    <p><strong>说明：</strong></p>
+    <p>• 输入格式：每行一个字段，如 <code>user_name</code> → <code>user_name userName</code></p>
+    <p>• 转换规则：下划线后字母大写并去掉下划线，首单词小写（camelCase）</p>
+    <p>• 转换示例：</p>
+    <ul>
+      <li><code>create_time,order_no,num</code> → <code>create_time createTime,order_no orderNo,num num</code></li>
+      <li><code>unit</code> → <code>unit unit</code>（单个词不变）</li>
+    </ul>
+	<p>• 适用场景：</p>
+    <ul>
+      <li>Java MyBatis 字段映射</li>
+      <li>导出文档或提供给前端参考</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // 转驼峰函数
+  function toCamelCase(str) {
+    return str.trim()
+      .toLowerCase()
+      .replace(/(_\w)/g, match => match[1].toUpperCase());
+  }
+
+  // 执行转换：原字段 + 驼峰
+  function convertToCamelCase() {
+    const input = document.getElementById('inputField').value;
+    const lines = input.split(',');
+    const result = lines
+      .map(line => line.trim())
+      .filter(line => line.length > 0)
+      .map(field => {
+        const camel = toCamelCase(field);
+        return `${field} ${camel}`;
+      })
+      .join(',');
+    document.getElementById('result').textContent = result;
+  }
+
+  // 复制结果到剪贴板
+  function copyResult() {
+    const resultDiv = document.getElementById('result');
+    const range = document.createRange();
+    window.getSelection().removeAllRanges();
+    range.selectNode(resultDiv);
+    window.getSelection().addRange(range);
+    try {
+      document.execCommand('copy');
+      alert('✅ 已复制到剪贴板！');
+    } catch (err) {
+      alert('❌ 复制失败，请手动选择复制。');
+    }
+    window.getSelection().removeAllRanges();
+  }
+</script>
+
+</body>
+</html>
