@@ -10,7 +10,7 @@
 | 编码解码 | [url编码解码]( https://scott180.github.io/tool/url-encode )        | [unicode解码]( https://scott180.github.io/tool/unicode-encode )    |
 | Markdown | [Markdown在线编辑器editormd]( https://scott180.github.io/tool/markdown-editormd ) |  [markdown-markthin]( https://scott180.github.io/tool/markdown-markthing ) |
 | 公众号   | [Markdown微信格式化]( https://scott180.github.io/tool/md2wx/docs ) | [微信公众号的编辑阅读器mpeditor]( https://scott180.github.io/tool/markdown-mpeditor )	    |
-| Git      | [github仓库tool]( https://github.com/scott180/tool )               | [个人笔记note]( https://gitlab.com/xuyq123/mynotes )               |
+| Git      | [github工具]( https://github.com/scott180/tool )  | [gitlab笔记]( https://gitlab.com/xuyq123/mynotes ) &ensp; [gitee笔记]( https://gitee.com/xy180/MyNotes )   |
 
 
 
