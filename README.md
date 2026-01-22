@@ -23,19 +23,18 @@ github部署的静态网页工具，[敬请使用]( https://scott180.github.io/t
 | Git      | [github工具]( https://github.com/scott180/tool )  | [bitbucket]( https://bitbucket.org/xu12345/mynotes ) &ensp; [gitee笔记]( https://gitee.com/xy180/MyNotes )   |
 | 公众号   | [二维码]( https://bitbucket.org/xu12345/document/raw/df3be88db64a8a03ac77abb16fc2c0feb0456f31/imgs/weixin/%E6%97%A0%E4%B8%BA%E5%BE%90%E7%94%9F.png )       |    [软件]( https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg4NDY2OTM0Mg==&action=getalbum&album_id=2010918071632265216&scene=126&sessionid=1768185736857 ) &ensp; [三国]( https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg4NDY2OTM0Mg==&action=getalbum&album_id=4334361080810962970&scene=126&sessionid=1768187552624 ) | 
 
+<br>
 
+---
 
+网络在线工具。
 
-
-
-
-
-
-
-
-
-
-
+| 功能     | 地址        | 说明           |
+| -----    | ----------- |  ------------- |
+| 开发     | [开发者武器库]( https://devtool.tech/ )  		     | 专为开发者打造的高效工具 		  | 
+| 工具     | [408个在线工具]( https://www.lddgo.net/index )      | 408个在线工具软件，96370394次使用  |
+| 坐标     | [坐标拾取器]( https://lbs.amap.com/tools/picker )   | 坐标拾取器，关键字与坐标搜索       |
+| 转换     | [文档转换]( https://www.aconvert.com/cn/ )          |  离线转换文档、图像、视频和音频    |
 
 
 
