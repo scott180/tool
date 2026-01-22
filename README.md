@@ -6,7 +6,7 @@ github部署的静态网页工具，[敬请使用]( https://scott180.github.io/t
 | -----    | ----------- |  ------------- |
 | Json     | [Json格式化]( https://scott180.github.io/tool/json )               | [Json转Excel]( https://scott180.github.io/tool/Json2Excel )        | 
 | 转换     | [sql转驼峰字段]( https://scott180.github.io/tool/sql2javaFiled )   | [时间毫秒值转换]( https://scott180.github.io/tool/time-format )    |
-|          | [合并kv工具]( https://scott180.github.io/tool/merge-kv ) 		    | [yaml解析]( https://scott180.github.io/tool/yaml-parse )           |
+| 合并     | [合并kv工具]( https://scott180.github.io/tool/merge-kv ) 		    | [yaml解析]( https://scott180.github.io/tool/yaml-parse )           |
 | 二维码   | [文字转二维码]( https://scott180.github.io/tool/words-QRcode )     | [二维码生成扫描识别]( https://scott180.github.io/tool/HtmlQRCode ) |
 | 编码解码 | [url编码解码]( https://scott180.github.io/tool/url-encode )        | [unicode解码]( https://scott180.github.io/tool/unicode-encode )    |
 | Markdown | [Markdown在线编辑器editormd]( https://scott180.github.io/tool/markdown-editormd ) |  [markdown-markthin]( https://scott180.github.io/tool/markdown-markthing ) |
