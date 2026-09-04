@@ -5,173 +5,362 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Key-Value 合并工具</title>
     <style>
+        :root {
+            --bg0: #dce6f2;
+            --bg1: #eef3f8;
+            --card: #ffffff;
+            --ink: #1b2430;
+            --muted: #6b7788;
+            --line: #e4eaf1;
+            --input-bg: #f7f9fc;
+            --primary: #3b5bdb;
+            --primary-hover: #4c6ef5;
+            --success: #0b9b75;
+            --success-hover: #12b886;
+            --danger: #c92a2a;
+            --danger-hover: #e03131;
+            --shadow: 0 18px 50px rgba(28, 48, 74, 0.12);
+            --radius: 18px;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f0f2f5;
-            padding: 40px 20px;
+            font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            color: var(--ink);
+            min-height: 100vh;
+            background:
+                radial-gradient(900px 420px at 12% -10%, rgba(91, 130, 214, 0.28), transparent 60%),
+                radial-gradient(700px 360px at 100% 0%, rgba(18, 184, 134, 0.14), transparent 55%),
+                linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 100%);
+            padding: 48px 20px;
             display: flex;
             justify-content: center;
+            align-items: flex-start;
         }
         .container {
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: var(--card);
+            padding: 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             width: 100%;
-            max-width: 650px;
+            max-width: 720px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
         }
-        h2 {
-            margin-top: 0;
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 6px;
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--line);
+        }
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(160deg, #4c6ef5, #3b5bdb);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 16px rgba(59, 91, 219, 0.28);
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            line-height: 1.3;
         }
         .hint {
-            text-align: center;
-            color: #888;
+            color: var(--muted);
             font-size: 13px;
-            margin-bottom: 20px;
+            margin-top: 4px;
+            line-height: 1.5;
         }
-        label {
-            font-weight: bold;
-            display: block;
+        .field {
+            margin-bottom: 18px;
+        }
+        .field-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 8px;
-            color: #555;
+        }
+        label, .output-label {
+            font-weight: 600;
+            color: #334155;
+            font-size: 14px;
+        }
+        .count {
+            font-size: 12px;
+            color: var(--muted);
+            background: var(--input-bg);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 2px 8px;
+        }
+        textarea,
+        .output {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 13.5px;
+            line-height: 1.75;
+            background: var(--input-bg);
+            color: var(--ink);
         }
         textarea {
-            width: 100%;
-            height: 180px;
-            padding: 12px;
-            border: 1px solid #d9d9d9;
-            border-radius: 4px;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 14px;
+            height: 210px;
             resize: vertical;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            min-height: 140px;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+        textarea::placeholder {
+            color: #93a1b3;
+        }
+        textarea:hover {
+            border-color: #cdd7e4;
         }
         textarea:focus {
-            border-color: #40a9ff;
+            border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(59, 91, 219, 0.14);
         }
         .btn-group {
             display: flex;
             gap: 10px;
-            margin-bottom: 20px;
+            margin: 6px 0 22px;
         }
         button {
             flex: 1;
-            padding: 10px 16px;
+            padding: 11px 16px;
             border: none;
-            border-radius: 4px;
-            font-size: 15px;
+            border-radius: 10px;
+            font-size: 14px;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            font-weight: 500;
+            transition: background 0.2s, transform 0.12s, box-shadow 0.2s, filter 0.2s;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        button:hover {
+            transform: translateY(-1px);
         }
         button:active {
-            transform: scale(0.98);
+            transform: scale(0.985);
         }
         .btn-process {
-            background-color: #1890ff;
-            color: white;
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 8px 16px rgba(59, 91, 219, 0.22);
         }
         .btn-process:hover {
-            background-color: #40a9ff;
+            background: var(--primary-hover);
         }
         .btn-copy {
-            background-color: #52c41a;
-            color: white;
+            background: var(--success);
+            color: #fff;
+            box-shadow: 0 8px 16px rgba(11, 155, 117, 0.18);
         }
         .btn-copy:hover {
-            background-color: #73d13d;
+            background: var(--success-hover);
         }
         .btn-clear {
-            background-color: #ff4d4f;
-            color: white;
+            background: #fff;
+            color: var(--danger);
+            border: 1px solid #f1c0c0;
+            box-shadow: none;
         }
         .btn-clear:hover {
-            background-color: #ff7875;
+            background: #fff5f5;
+            border-color: #e99;
         }
-        .output-label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
+        .output {
+            min-height: 92px;
+            border-left: 3px solid #c5d0de;
         }
-        #output {
-            padding: 15px;
-            background-color: #f7f9fa;
-            border: 1px solid #e8e8e8;
+        .output-placeholder,
+        .output-error {
+            color: #8a97a8;
+        }
+        .output-error {
+            color: #c92a2a;
+            background: #fff5f5;
+            border-color: #f3c6c6;
+            border-left-color: #e03131;
+        }
+        .output-result {
+            background: #fff;
+            border-left-color: var(--primary);
+        }
+        .kv-line + .kv-line {
+            margin-top: 2px;
+        }
+        .kv-key {
+            color: #3b5bdb;
+            font-weight: 600;
+        }
+        .kv-colon {
+            color: #94a3b8;
+            margin: 0 2px;
+        }
+        .kv-value {
+            color: #1e293b;
+        }
+        .kv-value.is-empty::after {
+            content: "空";
+            color: #94a3b8;
+            font-size: 12px;
+            font-family: inherit;
+            background: #eef2f7;
             border-radius: 4px;
-            min-height: 60px;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            white-space: pre-wrap;
-            color: #333;
-            font-size: 14px;
-            line-height: 1.8;
+            padding: 0 6px;
+            margin-left: 2px;
         }
         .toast-mask {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(15, 23, 42, 0.28);
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(3px);
         }
         .toast-mask.show {
             display: flex;
         }
         .toast {
             background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-            padding: 22px 28px 18px;
-            min-width: 240px;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+            padding: 26px 32px 20px;
+            min-width: 260px;
             text-align: center;
+            animation: toast-in 0.22s ease-out;
+        }
+        .toast-icon {
+            width: 42px;
+            height: 42px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            background: #e6fcf5;
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
         }
         .toast-title {
-            color: #2c3e50;
+            color: var(--ink);
             font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-weight: 700;
+            margin-bottom: 6px;
         }
         .toast-countdown {
-            color: #888;
+            color: var(--muted);
             font-size: 13px;
+        }
+        .toast-bar {
+            height: 4px;
+            background: #e9eef5;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 14px;
+        }
+        .toast-bar span {
+            display: block;
+            height: 100%;
+            width: 100%;
+            background: var(--success);
+            transform-origin: left center;
+        }
+        .toast-mask.show .toast-bar span {
+            animation: toast-bar 2s linear forwards;
+        }
+        @keyframes toast-in {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+        @keyframes toast-bar {
+            from { transform: scaleX(1); }
+            to { transform: scaleX(0); }
+        }
+        @media (max-width: 560px) {
+            body {
+                padding: 16px 12px 28px;
+            }
+            .container {
+                padding: 20px 16px;
+                border-radius: 14px;
+            }
+            h1 {
+                font-size: 18px;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            button {
+                letter-spacing: 2px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Key-Value 合并工具</h2>
-    <p class="hint">输入格式：每两行为一组（第一行为 key，第二行为 value）</p>
+    <header class="header">
+        <div class="logo" aria-hidden="true">KV</div>
+        <div>
+            <h1>Key-Value 合并工具</h1>
+            <p class="hint">每两行为一组；奇数行且相邻两行都是英文 key 时，前一行 value 为空</p>
+        </div>
+    </header>
 
-    <label for="input">输入数据：</label>
-    <textarea id="input" placeholder="例如：&#10;refer_start_time&#10;1764172800&#10;refer_end_time&#10;1764604799"></textarea>
-
-    <div class="btn-group">
-        <button class="btn-process" id="btnMerge" type="button">合 并</button>
-        <button class="btn-copy" id="btnCopy" type="button">复 制 结 果</button>
-        <button class="btn-clear" id="btnClear" type="button">清 空</button>
+    <div class="field">
+        <div class="field-head">
+            <label for="input">输入数据</label>
+        </div>
+        <textarea id="input" placeholder="例如：&#10;warehouse_id&#10;7&#10;warehouse_name&#10;杭州仓&#10;remark&#10;supplier_name&#10;上城供应发账单"></textarea>
     </div>
 
-    <span class="output-label">合并结果：</span>
-    <div id="output">结果将显示在这里...</div>
+    <div class="btn-group">
+        <button class="btn-process" id="btnMerge" type="button">合并</button>
+        <button class="btn-copy" id="btnCopy" type="button">复制结果</button>
+        <button class="btn-clear" id="btnClear" type="button">清空</button>
+    </div>
+
+    <div class="field">
+        <div class="field-head">
+            <span class="output-label">合并结果</span>
+            <span class="count" id="resultCount">0 条</span>
+        </div>
+        <div id="output" class="output output-placeholder">结果将显示在这里...</div>
+    </div>
 </div>
 
 <div class="toast-mask" id="toastMask">
     <div class="toast">
-        <div class="toast-title">已复制到剪贴板！</div>
+        <div class="toast-icon" aria-hidden="true">✓</div>
+        <div class="toast-title">已复制到剪贴板</div>
         <div class="toast-countdown" id="toastCountdown">2 秒后自动关闭</div>
+        <div class="toast-bar"><span></span></div>
     </div>
 </div>
 
@@ -179,12 +368,48 @@
 (function() {
     'use strict';
 
+    var PLACEHOLDER = '结果将显示在这里...';
     var inputEl = document.getElementById('input');
     var outputEl = document.getElementById('output');
+    var resultCountEl = document.getElementById('resultCount');
     var toastMask = document.getElementById('toastMask');
     var toastCountdown = document.getElementById('toastCountdown');
     var toastTimer = null;
     var toastRemain = 0;
+    var lastPairs = null;
+
+    function escapeHtml(text) {
+        return String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    function setPlaceholder() {
+        lastPairs = null;
+        outputEl.className = 'output output-placeholder';
+        outputEl.textContent = PLACEHOLDER;
+        resultCountEl.textContent = '0 条';
+    }
+
+    function setError(message) {
+        lastPairs = null;
+        outputEl.className = 'output output-error';
+        outputEl.textContent = message;
+        resultCountEl.textContent = '0 条';
+    }
+
+    function setResult(pairs) {
+        lastPairs = pairs;
+        outputEl.className = 'output output-result';
+        outputEl.innerHTML = pairs.map(function(pair) {
+            var emptyClass = pair.value === '' ? ' kv-value is-empty' : ' kv-value';
+            return '<div class="kv-line"><span class="kv-key">' + escapeHtml(pair.key) +
+                '</span><span class="kv-colon">:</span><span class="' + emptyClass.trim() + '">' +
+                escapeHtml(pair.value) + '</span></div>';
+        }).join('');
+        resultCountEl.textContent = pairs.length + ' 条';
+    }
 
     function hideCopyToast() {
         if (toastTimer) {
@@ -209,16 +434,14 @@
         }, 1000);
     }
 
-    // 英文标识（key）：字母开头，仅含字母/数字/下划线
     function isEnglishKey(line) {
         return /^[A-Za-z][A-Za-z0-9_]*$/.test(line);
     }
 
-    // 合并功能
     function process() {
         var raw = inputEl.value;
         if (!raw.trim()) {
-            outputEl.innerText = '请输入数据';
+            setError('请输入数据');
             return;
         }
 
@@ -232,27 +455,27 @@
             var remaining = validLines.length - i;
             var next = i + 1 < validLines.length ? validLines[i + 1] : null;
 
-            // 奇数行剩余时，若相邻两行都是英文 key，则当前行 value 为空
             if (remaining % 2 === 1 && next !== null && isEnglishKey(key) && isEnglishKey(next)) {
-                result.push(key + ':');
+                result.push({ key: key, value: '' });
                 i += 1;
                 continue;
             }
 
-            result.push(key + ':' + (next !== null ? next : ''));
+            result.push({ key: key, value: next !== null ? next : '' });
             i += next !== null ? 2 : 1;
         }
 
-        outputEl.innerText = result.join('\n');
+        setResult(result);
     }
 
-    // 复制功能
     function copyResult() {
-        var text = outputEl.innerText;
-        if (!text || text === '结果将显示在这里...' || text === '请输入数据') {
+        if (!lastPairs || !lastPairs.length) {
             alert('没有可复制的内容！');
             return;
         }
+        var text = lastPairs.map(function(pair) {
+            return pair.key + ':' + pair.value;
+        }).join('\n');
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text).then(function() {
@@ -266,7 +489,6 @@
         }
     }
 
-    // 降级复制方案
     function fallbackCopy(text) {
         var ta = document.createElement('textarea');
         ta.value = text;
@@ -283,13 +505,11 @@
         document.body.removeChild(ta);
     }
 
-    // 清空功能
     function clearAll() {
         inputEl.value = '';
-        outputEl.innerText = '结果将显示在这里...';
+        setPlaceholder();
     }
 
-    // 绑定按钮事件（使用 addEventListener 确保函数在 DOM 加载后才绑定）
     document.getElementById('btnMerge').addEventListener('click', process);
     document.getElementById('btnCopy').addEventListener('click', copyResult);
     document.getElementById('btnClear').addEventListener('click', clearAll);
