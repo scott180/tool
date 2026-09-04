@@ -117,6 +117,36 @@
             font-size: 14px;
             line-height: 1.8;
         }
+        .toast-mask {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .toast-mask.show {
+            display: flex;
+        }
+        .toast {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+            padding: 22px 28px 18px;
+            min-width: 240px;
+            text-align: center;
+        }
+        .toast-title {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .toast-countdown {
+            color: #888;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
@@ -138,12 +168,51 @@
     <div id="output">结果将显示在这里...</div>
 </div>
 
+<div class="toast-mask" id="toastMask">
+    <div class="toast">
+        <div class="toast-title">已复制到剪贴板！</div>
+        <div class="toast-countdown" id="toastCountdown">2 秒后自动关闭</div>
+    </div>
+</div>
+
 <script>
 (function() {
     'use strict';
 
     var inputEl = document.getElementById('input');
     var outputEl = document.getElementById('output');
+    var toastMask = document.getElementById('toastMask');
+    var toastCountdown = document.getElementById('toastCountdown');
+    var toastTimer = null;
+    var toastRemain = 0;
+
+    function hideCopyToast() {
+        if (toastTimer) {
+            clearInterval(toastTimer);
+            toastTimer = null;
+        }
+        toastMask.classList.remove('show');
+    }
+
+    function showCopyToast() {
+        hideCopyToast();
+        toastRemain = 2;
+        toastCountdown.textContent = toastRemain + ' 秒后自动关闭';
+        toastMask.classList.add('show');
+        toastTimer = setInterval(function() {
+            toastRemain -= 1;
+            if (toastRemain <= 0) {
+                hideCopyToast();
+                return;
+            }
+            toastCountdown.textContent = toastRemain + ' 秒后自动关闭';
+        }, 1000);
+    }
+
+    // 英文标识（key）：字母开头，仅含字母/数字/下划线
+    function isEnglishKey(line) {
+        return /^[A-Za-z][A-Za-z0-9_]*$/.test(line);
+    }
 
     // 合并功能
     function process() {
@@ -156,11 +225,22 @@
         var lines = raw.split(/\r?\n/).map(function(line) { return line.trim(); });
         var validLines = lines.filter(function(line) { return line !== ''; });
         var result = [];
+        var i = 0;
 
-        for (var i = 0; i < validLines.length; i += 2) {
+        while (i < validLines.length) {
             var key = validLines[i];
-            var value = (i + 1) < validLines.length ? validLines[i + 1] : '';
-            result.push(key + ':' + value);
+            var remaining = validLines.length - i;
+            var next = i + 1 < validLines.length ? validLines[i + 1] : null;
+
+            // 奇数行剩余时，若相邻两行都是英文 key，则当前行 value 为空
+            if (remaining % 2 === 1 && next !== null && isEnglishKey(key) && isEnglishKey(next)) {
+                result.push(key + ':');
+                i += 1;
+                continue;
+            }
+
+            result.push(key + ':' + (next !== null ? next : ''));
+            i += next !== null ? 2 : 1;
         }
 
         outputEl.innerText = result.join('\n');
@@ -176,7 +256,7 @@
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text).then(function() {
-                alert('已复制到剪贴板！');
+                showCopyToast();
             }).catch(function(err) {
                 console.error('复制失败:', err);
                 fallbackCopy(text);
@@ -196,7 +276,7 @@
         ta.select();
         try {
             document.execCommand('copy');
-            alert('已复制到剪贴板！');
+            showCopyToast();
         } catch (err) {
             alert('复制失败，请手动选中复制。');
         }
