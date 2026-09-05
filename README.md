@@ -34,7 +34,7 @@ k线图：[黄金TD]( https://quote.cngold.org/gjs/jjs_hjtd.html ) &ensp; [伦�
 
 游戏社区：[米游社]( https://bbs.mihoyo.com/ys/ ) &ensp; [taptap]( https://www.taptap.cn/top/download ) &ensp; [原神贴吧]( https://tieba.baidu.com/f?kw=%E5%8E%9F%E7%A5%9E ) &ensp; [nga论坛]( https://nga.178.com/thread.php?fid=650 ) &ensp; [椰羊cocogoat]( https://cocogoat.work/achievement )
 
-内容平台：[知乎]( https://www.zhihu.com/people/xu-xian-sheng-72-29 ) &ensp; [今日热榜]( https://tophub.today/c/news ) &ensp; [豆瓣电影]( https://movie.douban.com/ ) &ensp; [虎扑社区]( https://bbs.hupu.com/topic-daily ) &ensp; [虎嗅网]( https://www.huxiu.com/ )
+内容平台：[知乎]( https://www.zhihu.com/people/xu-xian-sheng-72-29 ) &ensp; [今日热榜]( https://tophub.today/c/news ) &ensp; [豆瓣电影]( https://movie.douban.com/ ) &ensp; [虎扑社区]( https://bbs.hupu.com/topic-daily ) &ensp; [虎嗅网]( https://www.huxiu.com/ ) &ensp; [小红书]( https://www.xiaohongshu.com/explore )
 
 相关地址：[ventusky]( https://www.ventusky.com/?p=31.8;116.3;5&l=temperature-2m ) &ensp; [CoinGlass]( https://www.coinglass.com/zh/currencies/%E5%B8%81%E5%AE%89%E4%BA%BA%E7%94%9F ) &ensp; [yandex]( https://yandex.com/ ) &ensp; [bing]( https://cn.bing.com/ )
 
@@ -42,7 +42,7 @@ k线图：[黄金TD]( https://quote.cngold.org/gjs/jjs_hjtd.html ) &ensp; [伦�
 
 **工具助手**
 
-AI助手： [千问]( https://www.qianwen.com ) &ensp; [豆包]( https://www.doubao.com ) &ensp; [文心]( https://yiyan.baidu.com ) &ensp; [kimi]( https://kimi.moonshot.cn ) &ensp; [deepseek]( https://www.deepseek.com ) &ensp; [chatgpt]( https://chatgpt.com ) &ensp; [gemini]( https://gemini.google.com ) &ensp;  [perplexity]( https://www.perplexity.ai ) &ensp; [grok]( https://grok.com )
+AI助手： [千问]( https://www.qianwen.com ) &ensp; [豆包]( https://www.doubao.com ) &ensp; [文心]( https://yiyan.baidu.com ) &ensp; [kimi]( https://kimi.moonshot.cn ) &ensp; [deepseek]( https://www.deepseek.com ) &ensp; [chatgpt]( https://chatgpt.com ) &ensp; [gemini]( https://gemini.google.com ) &ensp; [cursor]( https://cursor.com/dashboard ) &ensp; [grok]( https://grok.com )
 
 在线工具：[开发者武器库]( https://devtool.tech/ ) &ensp; [408个在线工具]( https://www.lddgo.net/index ) &ensp; [坐标拾取器]( https://lbs.amap.com/tools/picker ) &ensp;  [文档转换]( https://www.aconvert.com/cn/ )
 
