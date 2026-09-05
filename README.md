@@ -1,12 +1,14 @@
 # 工具导航
 
-**无为徐生**[工具导航]( https://scott180.github.io/tool/ )，欢迎使用。
+**在线工具**
 
-| 工具     | 在线        |
-| -----    | ----------- |
+| [无为徐生]( https://github.com/scott180/MyNotes )     | [在线工具]( https://scott180.github.io/tool/ )    |
+| --------     | ----------- |
 | 合并转换     | [合并KV工具]( https://scott180.github.io/tool/merge-kv ) &ensp; [yaml解析]( https://scott180.github.io/tool/yaml-parse ) `|` [sql转驼峰字段]( https://scott180.github.io/tool/sql2javaFiled ) &ensp; [时间毫秒值转换]( https://scott180.github.io/tool/time-format ) `|` [Json格式化]( https://scott180.github.io/tool/json ) &ensp; [Json转Excel]( https://scott180.github.io/tool/Json2Excel )        |
 | 编码解码 | [url编码解码]( https://scott180.github.io/tool/url-encode ) &ensp; [unicode解码]( https://scott180.github.io/tool/unicode-encode ) `|` [文字转二维码]( https://scott180.github.io/tool/words-QRcode ) &ensp; [二维码生成扫描识别]( https://scott180.github.io/tool/HtmlQRCode )   |
 | Markdown | [在线编辑editormd]( https://scott180.github.io/tool/markdown-editormd ) &ensp; [markthin]( https://scott180.github.io/tool/markdown-markthing ) `|` [微信公众号的编辑阅读器mpeditor]( https://scott180.github.io/tool/markdown-mpeditor ) &ensp; [Markdown微信格式化]( https://scott180.github.io/tool/md2wx/docs )  |
+
+---
 
 **我的笔记**
 
@@ -16,6 +18,7 @@ git仓库： [github]( https://github.com/scott180/MyNotes ) &ensp; [gitea]( htt
 
 文档地址：[日常笔记]( https://github.com/scott180/MyNotes/blob/master/note.md ) &ensp; [诗文浅作]( https://gitea.com/xuyq/document/src/branch/master/article/%E9%9A%8F%E7%AC%94/%E8%AF%97%E6%96%87%E6%B5%85%E4%BD%9C.md ) &ensp; [健身与学习]( https://bitbucket.org/xu12345/document/src/main/article/%E9%9A%8F%E7%AC%94/%E5%81%A5%E8%BA%AB%E4%B8%8E%E5%AD%A6%E4%B9%A0.md )
 
+---
 
 **黄金交易**
 
@@ -35,6 +38,7 @@ k线图：[黄金TD]( https://quote.cngold.org/gjs/jjs_hjtd.html ) &ensp; [伦�
 
 相关地址：[ventusky]( https://www.ventusky.com/?p=31.8;116.3;5&l=temperature-2m ) &ensp; [CoinGlass]( https://www.coinglass.com/zh/currencies/%E5%B8%81%E5%AE%89%E4%BA%BA%E7%94%9F ) &ensp; [yandex]( https://yandex.com/ ) &ensp; [bing]( https://cn.bing.com/ )
 
+---
 
 **工具助手**
 
@@ -42,7 +46,7 @@ AI助手： [千问]( https://www.qianwen.com ) &ensp; [豆包]( https://www.dou
 
 在线工具：[开发者武器库]( https://devtool.tech/ ) &ensp; [408个在线工具]( https://www.lddgo.net/index ) &ensp; [坐标拾取器]( https://lbs.amap.com/tools/picker ) &ensp;  [文档转换]( https://www.aconvert.com/cn/ )
 
-Markdown ：[作业部落]( https://www.zybuluo.com/mdeditor ) &ensp; [马克飞象]( https://marxi.co )&ensp; [dillinger]( https://dillinger.io ) &ensp; [typora]( https://www.typora.io )
+Markdown：[作业部落]( https://www.zybuluo.com/mdeditor ) &ensp; [马克飞象]( https://marxi.co )&ensp; [dillinger]( https://dillinger.io ) &ensp; [typora]( https://www.typora.io )
 
 ---
 
