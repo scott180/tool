@@ -1,48 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
   <head>
     <title>文字转二维码</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="文字转二维码">
     <link rel="shortcut icon" href="../index/favicon.ico">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.css">
-    <link rel="stylesheet" href="codemirror.css">
-    <link rel="stylesheet" href="demo.css">
-	<script src="js/qrcode.js"></script>
-	<script src="js/html2canvas.min.js"></script>
-
+    <link rel="stylesheet" href="style.css">
+    <script src="js/qrcode.js"></script>
+    <script src="js/html2canvas.min.js"></script>
   </head>
   <body>
+    <div class="page">
+      <header class="header">
+        <div class="brand">
+          <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+            <path fill="currentColor" d="M4 4h10v10H4V4zm2 2v6h6V6H6zm12-2h10v10H18V4zm2 2v6h6V6h-6zM4 18h10v10H4V18zm2 2v6h6v-6H6zm14 0h4v4h-4v-4zm6 0h4v4h-4v-4zm-6 6h4v4h-4v-4zm6 0h4v4h-4v-4z"/>
+          </svg>
+          <div>
+            <h1>文字转二维码</h1>
+            <p>输入链接和说明，生成可下载的二维码图片</p>
+          </div>
+        </div>
+        <nav class="nav">
+          <a href="https://scott180.github.io/tool" target="_blank" rel="noopener">工具网站</a>
+          <a href="https://github.com/MiuMiu-S/URL-to-QRcode-and-Download" target="_blank" rel="noopener">参考项目</a>
+        </nav>
+      </header>
 
-    <div class="header">
-      <h2>文字转二维码</h1>
-            <h4>
-                <a href="https://scott180.github.io/tool" data-placement="bottom" target="_blank">工具网站</a>&ensp;
-                <a href="https://github.com/MiuMiu-S/URL-to-QRcode-and-Download" data-placement="bottom" target="_blank">参考项目</a>
-            </h4>
-    </div>
-	</br>
-	
-    <div class="content">
-      <div class="src">
-        <h4 class="subheader"><a href="#" id="permalink" onclick='generateQRcode()'>生成</a> 
-		
-		原文</br>
-        <textarea id="urlVal" rows="5" cols="30">https://scott180.github.io/tool</textarea>
-		</br>
-        </br>
-		
-		说明</br>
-        <textarea id="intorduceVal" rows="3" cols="30">工具网站</textarea>
-      </div>
-	  
-      <div class="dst">
-        <!-- <h4 class="subheader">结果:</h4> -->
-        <h4 class="subheader">
-			<div id="QRcode"></div>
-			<a class="QR-download" style="margin: 16px" href="#" download>下载</a>
-		</div>
-      </div>
+      <main class="panel">
+        <section class="card">
+          <h2>内容</h2>
+          <label class="field">
+            <span>原文</span>
+            <textarea id="urlVal" rows="5">https://scott180.github.io/tool</textarea>
+          </label>
+          <label class="field">
+            <span>说明</span>
+            <textarea id="intorduceVal" rows="3">工具网站</textarea>
+          </label>
+          <button class="generate" id="permalink" type="button" onclick="generateQRcode()">生成二维码</button>
+          <p class="hint">说明会显示在二维码下方，下载的是带说明的完整图片。</p>
+        </section>
+
+        <section class="card preview-card">
+          <h2>预览</h2>
+          <div class="preview-frame">
+            <div id="QRcode"></div>
+          </div>
+          <a class="QR-download" href="#" download="qrcode.jpg">下载图片</a>
+        </section>
+      </main>
     </div>
 
 <script>
