@@ -1,71 +1,53 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>时间戳转换</title>
-	<meta name="keywords" content="时间戳转换">
+    <meta name="keywords" content="时间戳转换">
     <meta name="description" content="unix时间戳转换">
     <link rel="shortcut icon" href="../index/favicon.ico">
-
-    <title>timeChange</title>
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-            font-size: 20px;
-            outline: none;
-        }
-        #table{
-            width: 500px;
-            margin: 10px auto;
-            vertical-align:middle;
-            height: 500px;
-        }
-        #in{
-            padding: 10px;
-        }
-        button{
-            background: limegreen;
-            border: 2px solid lightgray;
-            margin: 15px 0px 15px 0px;
-            cursor: pointer;
-            box-shadow: 3px 3px 3px grey;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px; ;
-        }
-        #out{
-            padding:10px;
-        }
-        p{
-            line-height: 40px;
-            color: deeppink;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
+    <div class="page">
+        <header class="header">
+            <div class="brand">
+                <div class="logo" aria-hidden="true">时</div>
+                <div>
+                    <h1>时间戳转换</h1>
+                    <p>Unix 时间戳与北京时间互相转换，支持多行批量处理</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="https://scott180.github.io/tool" target="_blank" rel="noopener">工具网站</a>
+                <a href="https://github.com/bigfoot110614/timeChange/blob/master/time.html" target="_blank" rel="noopener">参考项目</a>
+            </nav>
+        </header>
 
-<div style="line-height: 2;padding: 2px">
-	<a href="https://scott180.github.io/tool" data-placement="bottom" target="_blank">工具网站</a> &ensp;  
-	<a href="https://github.com/bigfoot110614/timeChange/blob/master/time.html" data-placement="bottom" target="_blank">参考项目</a>
-</div>
-			
-<div id="table">
-    <p>时间戳转换</p>
-    <textarea id="in" cols="30" rows="6">1648905743000</textarea>
-    <div>
-	<select id="list">
-        <option value="mili">毫秒</option>
-        <option value="second">秒</option>
-    </select>
-	</div>
-    <button id="btn">&ensp;时间戳 >> 北京时间↓↓↓ &ensp; </button> &ensp;
-    <button id="BJtoUnix">&ensp;北京时间 >> 时间戳↑↑↑ &ensp;</button>
-    <textarea id="out" cols="30" rows="6">2022-04-02 21:22:23</textarea>
-</div>
-<div id="inner">
-
-</div>
+        <main class="card">
+            <div class="unit">
+                <span>时间单位</span>
+                <select id="list">
+                    <option value="mili">毫秒</option>
+                    <option value="second">秒</option>
+                </select>
+            </div>
+            <label class="field">
+                <span class="field-label">时间戳</span>
+                <textarea id="in" rows="6">1648905743000</textarea>
+            </label>
+            <div class="actions">
+                <button class="btn primary" id="btn" type="button">时间戳 → 北京时间</button>
+                <button class="btn" id="BJtoUnix" type="button">北京时间 → 时间戳</button>
+            </div>
+            <label class="field">
+                <span class="field-label">北京时间</span>
+                <textarea id="out" rows="6">2022-04-02 21:22:23</textarea>
+            </label>
+            <p class="hint">每行一条。向下转换读取上方时间戳，向上转换读取下方北京时间，格式为 YYYY-MM-DD HH:mm:ss。</p>
+        </main>
+    </div>
 <script>
     var list=document.getElementById('list');
     var Out=document.getElementById('out');
@@ -100,10 +82,8 @@
             OutValue.forEach(function (item,index) {
                 var tem=item.split(/(-|:|\s)/g);
 				console.log(tem);
-				tem = [tem[0],tem[2],tem[4],tem[6],tem[8],tem[10]];		
-//                var timestamp2=Date.parse(new Date(''+parseInt(item)));
-                //var commonTime = new Date(Date.UTC(year, month - 1, day, hour, minute, second))
-                var timestamp2 = Date.UTC(Number(tem[0]),Number(tem[1])-1,Number(tem[2]),Number(tem[3])-8,Number(tem[4]),Number(tem[5]));//这个参数能不能以数组的形式传
+				tem = [tem[0],tem[2],tem[4],tem[6],tem[8],tem[10]];
+                var timestamp2 = Date.UTC(Number(tem[0]),Number(tem[1])-1,Number(tem[2]),Number(tem[3])-8,Number(tem[4]),Number(tem[5]));
                 console.log(timestamp2);
                 if(list.value=='second'){
                     timestamp2 = timestamp2 / 1000;
@@ -132,20 +112,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

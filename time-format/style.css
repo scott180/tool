@@ -4,9 +4,9 @@
   --line: #e4eaf1;
   --paper: #eef3f8;
   --card: #ffffff;
-  --accent: #7048e8;
-  --accent-deep: #5f3dc4;
-  --accent-soft: rgba(112, 72, 232, 0.12);
+  --accent: #3b5bdb;
+  --accent-deep: #364fc7;
+  --accent-soft: rgba(59, 91, 219, 0.12);
   --shadow: 0 18px 50px rgba(28, 48, 74, 0.1);
 }
 
@@ -24,13 +24,13 @@ body {
   color: var(--ink);
   font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   background:
-    radial-gradient(820px 380px at 8% -8%, rgba(112, 72, 232, 0.16), transparent 62%),
-    radial-gradient(680px 320px at 100% 0%, rgba(59, 91, 219, 0.12), transparent 58%),
-    linear-gradient(180deg, #f7f8fc 0%, var(--paper) 100%);
+    radial-gradient(820px 380px at 8% -8%, rgba(59, 91, 219, 0.2), transparent 62%),
+    radial-gradient(680px 320px at 100% 0%, rgba(12, 133, 153, 0.1), transparent 58%),
+    linear-gradient(180deg, #f7f9fc 0%, var(--paper) 100%);
 }
 
 .page {
-  width: min(860px, calc(100% - 32px));
+  width: min(760px, calc(100% - 32px));
   margin: 0 auto;
   padding: 40px 0 64px;
 }
@@ -58,11 +58,10 @@ body {
   place-items: center;
   border-radius: 14px;
   color: #fff;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.4px;
-  background: linear-gradient(160deg, #845ef7, var(--accent-deep));
-  box-shadow: 0 10px 20px rgba(112, 72, 232, 0.28);
+  background: linear-gradient(160deg, #4c6ef5, var(--accent-deep));
+  box-shadow: 0 10px 20px rgba(59, 91, 219, 0.28);
 }
 
 .brand h1 {
@@ -96,7 +95,7 @@ body {
 }
 
 .nav a:hover {
-  color: var(--accent-deep);
+  color: var(--accent);
   background: #fff;
   box-shadow: 0 6px 16px rgba(28, 48, 74, 0.08);
 }
@@ -109,33 +108,53 @@ body {
   padding: 24px;
 }
 
+.unit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.unit span {
+  font-size: 13px;
+  font-weight: 650;
+  color: #334155;
+}
+
+select {
+  min-width: 120px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fbfcfe;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+select:focus {
+  border-color: #bac8f5;
+  background: #fff;
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
 .field {
   display: block;
-  margin-bottom: 16px;
 }
 
 .field-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: block;
   margin-bottom: 8px;
   font-size: 13px;
   font-weight: 650;
   color: #334155;
 }
 
-.tag {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--accent-deep);
-  background: var(--accent-soft);
-  border-radius: 999px;
-  padding: 2px 8px;
-}
-
 textarea {
   width: 100%;
-  min-height: 148px;
+  min-height: 140px;
   resize: vertical;
   padding: 12px 14px;
   border: 1px solid var(--line);
@@ -143,23 +162,23 @@ textarea {
   background: #fbfcfe;
   color: var(--ink);
   font: inherit;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 textarea:focus {
-  border-color: #d0bfff;
+  border-color: #bac8f5;
   background: #fff;
-  box-shadow: 0 0 0 4px rgba(112, 72, 232, 0.12);
+  box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 2px 0 18px;
+  margin: 16px 0;
 }
 
 .btn {
@@ -194,38 +213,16 @@ textarea:focus {
   border-color: var(--accent-deep);
 }
 
-.btn.ghost {
+.hint {
+  margin: 14px 0 0;
   color: var(--muted);
-}
-
-.note {
-  margin-top: 6px;
-  padding: 14px 16px 4px;
-  border-radius: 14px;
-  background: #f8f7fc;
-  border: 1px solid var(--line);
-}
-
-.note ul {
-  margin: 0;
-  padding: 0 0 0 18px;
-}
-
-.note li {
-  margin-bottom: 10px;
-  color: #475569;
-  font-size: 13px;
-  line-height: 1.75;
-}
-
-.note strong {
-  color: var(--ink);
-  font-weight: 650;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 @media (max-width: 720px) {
   .page {
-    width: min(100% - 24px, 860px);
+    width: min(100% - 24px, 760px);
     padding-top: 24px;
   }
 
@@ -240,5 +237,9 @@ textarea:focus {
 
   .card {
     padding: 18px;
+  }
+
+  .actions .btn {
+    flex: 1 1 180px;
   }
 }
