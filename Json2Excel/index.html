@@ -1,35 +1,46 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Json转Excel</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="description" content="Json转Excel">
     <link rel="shortcut icon" href="../index/favicon.ico">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.css">
-    <link rel="stylesheet" href="codemirror.css">
-    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="style.css">
     <script src="./xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="brand">
+                <div class="logo" aria-hidden="true">表</div>
+                <div>
+                    <h1>Json 转 Excel</h1>
+                    <p>选择本地 JSON 文件，或直接在输入框填写，都可以导出为 xlsx</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="https://scott180.github.io/tool" target="_blank" rel="noopener">工具网站</a>
+                <a href="https://github.com/CYD-10/Json2Excel" target="_blank" rel="noopener">参考项目</a>
+            </nav>
+        </header>
 
-  </head>
-  <body>
-
-    <div class="header">
-      <h2>Json转Excel</h1>
-            <h4>
-                <a href="https://scott180.github.io/tool" data-placement="bottom" target="_blank">工具网站</a>&ensp;
-                <a href="https://github.com/CYD-10/Json2Excel" data-placement="bottom" target="_blank">参考项目</a>
-            </h4>
-    </div>
-	</br>
-	
-    <div class="content">
-      <div class="src">
-        <h4 class="subheader"> 
-		<a href="#" id="permalink"><input type="file" id="files"/></a> 
-		
-		示例</br>
-        <textarea id="urlVal" rows="27" cols="55">
-[{
+        <main class="card">
+            <div class="toolbar">
+                <label class="btn file">
+                    选择 JSON 文件
+                    <input type="file" id="files" accept=".json,application/json,.txt">
+                </label>
+                <span class="file-name" id="fileName">未选择文件</span>
+                <button class="btn primary" type="button" onclick="jsonToExcel()">导出为 Excel</button>
+            </div>
+            <div class="field">
+                <div class="field-label">JSON 数据 <span class="tag">对象或数组</span></div>
+                <div class="field-actions">
+                    <button class="btn format" type="button" onclick="formatJson()">格式化</button>
+                    <button class="btn compress" type="button" onclick="compressJson()">压缩成一行</button>
+                </div>
+                <textarea id="urlVal" rows="18">[{
 	"addrAddress": "无为徐生",
 	"addrHash": "dc1ab4c0cef91b8902e63d95f283d1",
 	"sort": 1.0000000000000000,
@@ -47,71 +58,94 @@
 	"deliverySortId": 88,
 	"warehouseId": 7,
 	"tag": 1
-}]
-	</textarea>
-		</br>
-        </br>
-		</br>
-      </div>
-	  
-      <div class="dst">
-		
-        <h4 class="subheader">
-		<a class="QR-download" style="margin: 16px" ><button onclick="jsonToExcel()">导出为Excel</button></a>
-		
-		</div>
-      </div>
+}]</textarea>
+            </div>
+            <p class="hint">选择文件后会把内容填入下方输入框。也可以直接修改或粘贴 JSON，再导出。格式化会按缩进换行，压缩会收成一行字符串。导出内容需是对象，或由对象组成的数组。</p>
+        </main>
     </div>
-	
-	
-<!--
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="./xlsx.full.min.js"></script>
-  <title>Document</title>
-</head>
-<body>
-<div>
-  <input type="file" id="files"/>
-  <button onclick="jsonToExcel()">导出为Excel</button>
-</div>
--->
-
 <script>
-  var json;
   var inputElement = document.getElementById("files");
+  var area = document.getElementById("urlVal");
   inputElement.addEventListener("change", handleFiles, false);
+
   function handleFiles() {
-	 var selectedFile = document.getElementById("files").files[0];
-	 var reader = new FileReader();
-	 reader.readAsText(selectedFile,"UTF-8");
-	 reader.onload = function(){
-	  try {
-		json = JSON.parse(this.result);
-	  } catch (error) {
-	  console.log(error);
-	  alert("json文件格式错误");
-	  } 
-	 };
+    var selectedFile = inputElement.files[0];
+    var nameEl = document.getElementById("fileName");
+    if (!selectedFile) {
+      if (nameEl) nameEl.textContent = "未选择文件";
+      return;
+    }
+    if (nameEl) nameEl.textContent = selectedFile.name;
+    var reader = new FileReader();
+    reader.readAsText(selectedFile, "UTF-8");
+    reader.onload = function() {
+      area.value = this.result;
+      try {
+        parseJson(this.result);
+      } catch (error) {
+        console.log(error);
+        alert("json文件格式错误");
+      }
+    };
   }
-  
-  function jsonToExcel () {
-    var filename = "write.xlsx";
-    var ws_name = "SheetJS";
-    var wb = XLSX.utils.book_new();
-	try {
-		    var ws = XLSX.utils.json_to_sheet(json,{ raw: true });
-			XLSX.utils.book_append_sheet(wb, ws, ws_name);
-			XLSX.writeFile(wb, filename);
-	  } catch (error) {
-		console.log(error);
-	   alert("json文件格式不正确，请参考示例");
-	  } 
+
+  function parseJson(text) {
+    var value = String(text || "").trim();
+    if (!value) {
+      throw new Error("empty");
+    }
+    var data = JSON.parse(value);
+    if (Array.isArray(data)) {
+      return data;
+    }
+    if (data && typeof data === "object") {
+      return [data];
+    }
+    throw new Error("invalid");
+  }
+
+  function rewriteJson(space) {
+    var text = String(area.value || "").trim();
+    if (!text) {
+      alert("请先填写 JSON 数据");
+      return;
+    }
+    try {
+      area.value = JSON.stringify(JSON.parse(text), null, space);
+    } catch (error) {
+      console.log(error);
+      alert("json格式不正确，无法处理");
+    }
+  }
+
+  function formatJson() {
+    rewriteJson(2);
+  }
+
+  function compressJson() {
+    rewriteJson(0);
+  }
+
+  function jsonToExcel() {
+    var data;
+    try {
+      data = parseJson(area.value);
+    } catch (error) {
+      console.log(error);
+      alert(String(area.value || "").trim() ? "json格式不正确，请填写对象或对象数组" : "请选择 JSON 文件，或在输入框中填写数据");
+      return;
+    }
+    try {
+      var filename = "write.xlsx";
+      var ws_name = "SheetJS";
+      var wb = XLSX.utils.book_new();
+      var ws = XLSX.utils.json_to_sheet(data, { raw: true });
+      XLSX.utils.book_append_sheet(wb, ws, ws_name);
+      XLSX.writeFile(wb, filename);
+    } catch (error) {
+      console.log(error);
+      alert("json格式不正确，请填写对象或对象数组");
+    }
   }
 </script>
 </body>
